@@ -9,7 +9,7 @@
     <!-- launch localization (hint: check out the preinstalled "turtlebot3_slam" package) -->
 
     <!-- launch object A detector (april tags) --> 
-
+	
     <!-- launch object B detector (geometric shapes) -->
 
     <!-- launch object C detector (animals) -->
