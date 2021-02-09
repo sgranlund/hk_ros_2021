@@ -9,7 +9,12 @@
     <!-- launch localization (hint: check out the preinstalled "turtlebot3_slam" package) -->
 
     <!-- launch object A detector (april tags) --> 
-	
+<include file="$(find apriltag_ros)/launch/continuous_detection.launch">
+
+ <arg name="image_topic" value="/image" />
+  <arg name="camera_name" value="/raspicam_node" />
+</include>
+
     <!-- launch object B detector (geometric shapes) -->
 
     <!-- launch object C detector (animals) -->
