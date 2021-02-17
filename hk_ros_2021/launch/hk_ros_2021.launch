@@ -31,9 +31,10 @@
 	<include file="$(find apriltag_ros)/launch/continuous_detection.launch">
 		<arg name="image_topic" value="/image" />
   		<arg name="camera_name" value="/raspicam_node" />
-		<arg name="camera_frame" value="odom"/>
+		<arg name="camera_frame" value="camera_rgb_optical_frame"/>
 	</include>
-
+  <node pkg="hk_ros_2021" type="subscriberAT9.py" name="tag9" output="screen" />
+<node pkg="hk_ros_2021" type="output_generation_template.py" name="tags" output="screen" />
     <!-- launch object B detector (geometric shapes) -->
 
     <!-- launch object C detector (animals) -->
