@@ -14,7 +14,7 @@ for entry in yamldocs_gt:
     dets_gt.append(entry)
 
 # load output file to evaluate
-filename_eval = "example_output_file.yaml"
+filename_eval = "latest_output_file.yaml"
 stream = open(filename_eval, "r")
 yamldocs_eval = yaml.load_all(stream,Loader=yaml.SafeLoader)
 dets_eval = []

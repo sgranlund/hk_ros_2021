@@ -5,7 +5,9 @@ import math
 import tf
 import geometry_msgs.msg
 import numpy
-
+from std_msgs.msg import String,Float32,Float32MultiArray,MultiArrayLayout,MultiArrayDimension
+import yaml
+import json
 
 def detectTag(tagId):
     try:
@@ -23,11 +25,11 @@ if __name__ == '__main__':
     rospy.init_node('listener')
 
     listener = tf.TransformListener()
-
+    pub = rospy.Publisher('apriltagList', String , queue_size=10)
     rate = rospy.Rate(10.0)
 
     
-    tagNames = ["tag_9","tag_8"] 
+    tagNames = ["tag_9","tag_8","tag_1"] 
     global tagTable
     tagTable={}
     
@@ -36,8 +38,8 @@ if __name__ == '__main__':
             coordinates = detectTag(tagName)
             if coordinates is not None:
                 tagTable[tagName] = coordinates
+                pub.publish(json.dumps({'coords' : tagTable[tagName],'name': tagName}))
 
-        
-        print tagTable
+        #print tagTable
         rate.sleep()
            
