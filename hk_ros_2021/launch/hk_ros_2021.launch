@@ -8,24 +8,12 @@
 
     <!-- launch localization (hint: check out the preinstalled "turtlebot3_slam" package) -->
 
+  	<include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+    		<arg name="model" value="waffle_pi"/>
+		<arg name="open_rviz" default="false"/>
+		<arg name="slam_methods" default="gmapping"/>
+	</include>
 
- 	 <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
- 	 <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
-  	<arg name="open_rviz" default="false"/>
-
-  	<!-- TurtleBot3 -->
-  	<include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
-    		<arg name="model" value="waffle" />
-  	</include>
-
- 	 <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
-  	<include file="$(find turtlebot3_slam)/launch/turtlebot3_$(arg slam_methods).launch">
-    		<arg name="model" value="waffle"/>
-    		<arg name="configuration_basename" value="turtlebot3_lds_2d.lua"/>
- 	 </include>
-
-
-          
 
     <!-- launch object A detector (april tags) --> 
 	<include file="$(find apriltag_ros)/launch/continuous_detection.launch">
@@ -33,8 +21,9 @@
   		<arg name="camera_name" value="/raspicam_node" />
 		<arg name="camera_frame" value="camera_rgb_optical_frame"/>
 	</include>
-  <node pkg="hk_ros_2021" type="subscriberAT.py" name="tag" output="screen" />
-<node pkg="hk_ros_2021" type="output_generation_template.py" name="outputGeneration" output="screen" />
+
+  	<node pkg="hk_ros_2021" type="subscriberAT.py" name="tag" output="screen" />
+	<node pkg="hk_ros_2021" type="output_generation_template.py" name="outputGeneration" output="screen" />
     <!-- launch object B detector (geometric shapes) -->
 
     <!-- launch object C detector (animals) -->

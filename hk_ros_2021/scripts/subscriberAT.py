@@ -16,6 +16,7 @@ def detectTag(tagId):
     except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
         return None
     (x, y, z) = trans
+    (wq,xr,yr,zr)=rot
     (rx, ry, rz) = camTrans
     
     return (-x, -y)
@@ -29,7 +30,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(10.0)
 
     
-    tagNames = ["tag_9","tag_8","tag_1"] 
+    tagNames = ["tag_9","tag_8","tag_7","tag_6","tag_5","tag_4","tag_3","tag_2", "tag_1"] 
     global tagTable
     tagTable={}
     
