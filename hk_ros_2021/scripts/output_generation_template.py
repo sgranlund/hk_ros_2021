@@ -16,7 +16,7 @@ detections = []
 def callback(data):
     
     x= json.loads(data.data)
-    rospy.loginfo(rospy.get_caller_id() + "I heard %s", x)
+    #rospy.loginfo(rospy.get_caller_id() + "I heard %s", x)
     i = 0
     for d in detections:
         if d['name'] == x['name']:
