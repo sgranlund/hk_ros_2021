@@ -21,28 +21,16 @@
   		<arg name="camera_name" value="/raspicam_node" />
 		<arg name="camera_frame" value="/camera_rgb_optical_frame"/>
 	</include>
-
+<!-- nodes for storing apriltags location-->
   	<node pkg="hk_ros_2021" type="subscriberAT.py" name="tag" output="screen" />
 	<node pkg="hk_ros_2021" type="output_generation_template.py" name="outputGeneration" output="screen" />
-    <!-- launch object B detector (geometric shapes)
-	<include file="$(find darknet_ros)/launch/darknet_ros.launch">
-	<arg name="image" value="/raspicam_node/image"/>
-	<arg name="network_param_file" value="$(find darknet_ros)/config/yolov3.yaml"/>
-	</include> -->
+
 
     <!-- launch object C detector (animals) -->
 
-<!--<include file="/home/sebastian/catkin_ws/src/find-object/launch/find_object_2d.launch">
-   <arg name="image_topic" default="/raspicam_node/image"/>
- <arg name="settings_path" default="~/settings.ini"/>
-
-
-
-</include>-->
-
 <include file="$(find darknet_ros)/launch/darknet_ros.launch">
   <arg name="image" default="/raspicam_node/image" />
-	<arg name="network_param_file" value="$(find darknet_ros)/config/yolov2-tiny.yaml"/>
+	<arg name="network_param_file" value="$(find darknet_ros)/config/yolov3.yaml"/>
 </include>
 
 
