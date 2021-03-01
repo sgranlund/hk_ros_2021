@@ -2,7 +2,7 @@
 
     <!-- set /use_sim_time true if replaying bag  (also remember clock flag for rosbag play) --> 
     	<param name="/use_sim_time" value="true"/>
-
+<node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 3.3 0 0 /map /plotFrame 100" />
     <!-- uncompress camera feed -->
     	<node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/raspicam_node/image raw out:=/raspicam_node/image" /> 
 
@@ -28,8 +28,9 @@
 
     <!-- launch object C detector (animals) -->
 
-<node pkg="hk_ros_2021" type="objectPosDark.py" name="darkList" output="screen" />
-
+<node pkg="hk_ros_2021" type="objectPosDarkLidar.py" name="darkList" output="screen" />
+<node pkg="hk_ros_2021" type="TFbroad.py" name="TFbroad" output="screen" />
+<node pkg="hk_ros_2021" type="subscriberAnimal.py" name="subscribeAnimal" output="screen" />
 <include file="$(find darknet_ros)/launch/darknet_ros.launch">
   <arg name="image" default="/raspicam_node/image" />
 	<arg name="network_param_file" value="$(find darknet_ros)/config/yolov3.yaml"/>

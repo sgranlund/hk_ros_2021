@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /TF1
         - /TF1/Frames1
         - /Image1
         - /DepthCloud1
@@ -73,6 +74,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        animal:
+          Value: true
         base_footprint:
           Value: true
         base_link:
@@ -95,6 +98,8 @@ Visualization Manager:
           Value: true
         odom:
           Value: true
+        plotFrame:
+          Value: true
         tag_1:
           Value: true
         tag_8:
@@ -116,7 +121,8 @@ Visualization Manager:
             base_footprint:
               base_link:
                 base_scan:
-                  {}
+                  animal:
+                    {}
                 camera_link:
                   camera_rgb_frame:
                     camera_rgb_optical_frame:
@@ -136,6 +142,8 @@ Visualization Manager:
                   {}
                 wheel_right_link:
                   {}
+          plotFrame:
+            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -276,26 +284,21 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Class: rviz/ThirdPersonFollower
-      Distance: 16.2397175
+      Angle: 0
+      Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
-      Focal Point:
-        X: -2.93229294
-        Y: -3.60016441
-        Z: 2.18954337e-05
-      Focal Shape Fixed Size: true
-      Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.669796586
+      Scale: 43.6349373
       Target Frame: map
-      Value: ThirdPersonFollower (rviz)
-      Yaw: 4.06660128
+      Value: TopDownOrtho (rviz)
+      X: 0
+      Y: 0
     Saved: ~
 Window Geometry:
   Displays:

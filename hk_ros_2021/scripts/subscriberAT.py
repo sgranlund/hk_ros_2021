@@ -12,7 +12,7 @@ import json
 def detectTag(tagId):
     try:
         (trans,rot) = listener.lookupTransform('/map', tagId, rospy.Time(0))
-        (odomTrans,odomRot) = listener.lookupTransform('/map', '/odom', rospy.Time(0))
+        (odomTrans,odomRot) = listener.lookupTransform('/plotFrame', tagId, rospy.Time(0))
     except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
         return None
     (x, y, z) = trans
@@ -23,7 +23,7 @@ def detectTag(tagId):
     #y=y1-y2
     #print(x)
     #print(y)
-    return (-x, -y)
+    return (x2, y2)
 
 
 if __name__ == '__main__':
