@@ -5,22 +5,17 @@
 import yaml
 import rospkg
 import subscriberAT
-import kmeans as k
 
 # 1 create an empty list to store the detections
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
 import json
-detections1 = [] #apriltags
-detections3 =[] #shapes
-detections2 =[] #animals
-detections=[] 
+detections1 = []
+detections2 =[]
+detections=[]
 checkx =0
 checky=0
-checkshapex = 0
-checkshapey = 0
-
 def callback(data):
    
     x= json.loads(data.data)
@@ -40,6 +35,11 @@ def callback2(data):
     if f['coords'] is not None:
         if f['coords'][1]>= (checkx+0.2) or f['coords'][1]<= (checkx-0.2):
             if f['coords'][0]>= (checky+0.2) or f['coords'][0]<= (checky-0.2):
+                print('**********')
+                print('True')
+                print(checkx)
+                print(f['coords'])
+                print('**********')
                 detections2.append({"obj_type": "C", "XY_pos" : f['coords']}) 
                 listOfGloabals = globals()
                 listOfGloabals['checkx'] = f['coords'][1]
@@ -48,15 +48,19 @@ def callback2(data):
 def callback3(data):
     
     f= json.loads(data.data)
-    print('*****')
-    print(f['coords'])
+    
     if f['coords'] is not None:
-        if f['coords'][1]>= (checkshapex+0.2) or f['coords'][1]<= (checkshapex-0.2):
-            if f['coords'][0]>= (checkshapey+0.2) or f['coords'][0]<= (checkshapey-0.2):
-                detections3.append({"obj_type": "B", "XY_pos" : f['coords']}) 
+        if f['coords'][1]>= (checkx+0.2) or f['coords'][1]<= (checkx-0.2):
+            if f['coords'][0]>= (checky+0.2) or f['coords'][0]<= (checky-0.2):
+                print('**********')
+                print('True')
+                print(checkx)
+                print(f['coords'])
+                print('**********')
+                detections2.append({"obj_type": "B", "XY_pos" : f['coords']}) 
                 listOfGloabals = globals()
-                listOfGloabals['checkshapex'] = f['coords'][1]
-                listOfGloabals['checkshapey'] = f['coords'][0]
+                listOfGloabals['checkx'] = f['coords'][1]
+                listOfGloabals['checky'] = f['coords'][0]
 
     
 def outputListener():
@@ -81,6 +85,6 @@ filepath = rospkg.RosPack().get_path('hk_ros_2021') + '/exported_detection_logs/
 
 for d in detections1:
     d.pop('name', None)
-detections = detections1+detections2+detections3
+detections = detections1+detections2
 with open(filepath + filename, 'w') as outfile:
     yaml.dump_all(detections, outfile,explicit_start=True)

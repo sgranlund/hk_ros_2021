@@ -11,15 +11,15 @@ import json
 
 def detectTag(tagId):
     try:
-        (trans,rot) = listener.lookupTransform('/map', tagId, rospy.Time(0))
+        (trans,rot) = listener.lookupTransform('/plotFrame', tagId, rospy.Time(0))
         (camTrans,camRot) = listener.lookupTransform('/map', '/camera_rgb_optical_frame', rospy.Time(0))
     except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
         return None
     (x, y, z) = trans
     (wq,xr,yr,zr)=rot
     (rx, ry, rz) = camTrans
-    
-    return (-x, -y)
+   
+    return (x, y)
 
 
 if __name__ == '__main__':

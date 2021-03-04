@@ -19,14 +19,14 @@ stream = open(filename_eval, "r")
 yamldocs_eval = yaml.load_all(stream,Loader=yaml.SafeLoader)
 dets_eval = []
 for entry in yamldocs_eval: 
-    if (len(dets_eval) < len(dets_gt)):   # Only the first len(dets_gt) detections will be counted (to prevent cheating by just randomly placing objects)
-        dets_eval.append(entry)
+    #if (len(dets_eval) < len(dets_gt)):   # Only the first len(dets_gt) detections will be counted (to prevent cheating by just randomly placing objects)
+    dets_eval.append(entry)
 
 # plot initial robot pose
 fig, ax = plt.subplots()
 ax.plot(0,0, 'b>', markersize=12)
 
-# plot gt detections
+""" # plot gt detections
 for det in dets_gt:
     if(det["obj_type"] == "A"):
         markerstyle = "bo"
@@ -36,7 +36,7 @@ for det in dets_gt:
         mB, = ax.plot(det["XY_pos"][0],det["XY_pos"][1], markerstyle)
     elif(det["obj_type"] == "C"):
         markerstyle = "go"
-        mC, = ax.plot(det["XY_pos"][0],det["XY_pos"][1], markerstyle)  
+        mC, = ax.plot(det["XY_pos"][0],det["XY_pos"][1], markerstyle)  """ 
 
 # plot eval detections
 for det in dets_eval:
@@ -52,6 +52,6 @@ for det in dets_eval:
     else:
         print "WARNING! Faulty obj_type in eval file"
         
-ax.legend((mA, mB, mC), ('A', 'B', 'C'))
-ax.set_aspect('equal', 'box') 
+#ax.legend((mA, mB, mC), ('A', 'B', 'C'))
+#ax.set_aspect('equal', 'box') 
 plt.show()
