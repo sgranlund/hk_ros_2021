@@ -51,8 +51,8 @@ def callback3(data):
     print('*****')
     print(f['coords'])
     if f['coords'] is not None:
-        if f['coords'][1]>= (checkshapex+0.2) or f['coords'][1]<= (checkshapex-0.2):
-            if f['coords'][0]>= (checkshapey+0.2) or f['coords'][0]<= (checkshapey-0.2):
+        if f['coords'][1]>= (checkshapex+0.3) or f['coords'][1]<= (checkshapex-0.3):
+            if f['coords'][0]>= (checkshapey+0.3) or f['coords'][0]<= (checkshapey-0.3):
                 detections3.append({"obj_type": "B", "XY_pos" : f['coords']}) 
                 listOfGloabals = globals()
                 listOfGloabals['checkshapex'] = f['coords'][1]

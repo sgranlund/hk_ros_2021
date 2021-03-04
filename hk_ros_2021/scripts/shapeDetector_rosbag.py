@@ -78,11 +78,11 @@ def detect_shape(img):
     height, width = img.shape[:2]
     hsv_img = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
-    blue_lower = np.array([99,70,68])
+    blue_lower = np.array([99,70,0])
     blue_higher = np.array([109,255,255])
     blue_mask = cv2.inRange(hsv_img,blue_lower,blue_higher)
 
-    green_lower = np.array([52,106,0])
+    green_lower = np.array([35,50,0])
     green_higher = np.array([80, 255,255])
     green_mask = cv2.inRange(hsv_img,green_lower,green_higher)
 
